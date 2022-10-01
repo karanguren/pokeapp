@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 const Main = () => {
+    
     const [pokeData, setPokeData] = useState([]);
     const [pokeDataRes, setPokeDataRes] = useState([]);
     const [loading, setLoading] = useState(true);
