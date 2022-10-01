@@ -37,7 +37,7 @@ export default function PokeInfo() {
     return (
         <>
             <div className="card-container">
-                <div className={`card ${className}`}>
+                <div className={`cardp ${className}`}>
                     <div className="bg-pokeball"></div>
                     <span className="pokemon-id">{pokemon.id}</span>
                     <div className="card-title">

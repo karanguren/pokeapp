@@ -1,4 +1,4 @@
-.card
+.cardp
 {
     /* background-color: burlywood; */
     background-color: var(--color);
@@ -23,24 +23,24 @@
     cursor: pointer;
 }
 
-.card .card-title
+.cardp .card-title
 {
     align-self: flex-start;
 }
 
-.card .card-title h2
+.cardp .card-title h2
 {
     text-transform: capitalize;
     margin: 0;
     font-size: 2rem;
 }
 
-.card .card-title .pokemon-types
+.cardp .card-title .pokemon-types
 {
     margin-top: 1rem;
 }
 
-.card .card-title span.type
+.cardp .card-title span.type
 {
     border-radius: 100rem;
     display: table;
@@ -51,7 +51,7 @@
     text-transform: capitalize;
 }
 
-.card .pokemon-image
+.cardp .pokemon-image
 {
     align-self: flex-end;
     display: flex;
@@ -60,7 +60,7 @@
     max-width: 40%;
 }
 
-.card img
+.cardp img
 {
     max-width: 100%;
     max-height: 100%;
