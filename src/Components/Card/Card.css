@@ -6,7 +6,7 @@
     box-shadow: 0 0 20px 0 var(--color);
     border-radius: 3rem;
     overflow: hidden;
-    height: 200px;
+    height: 100%;
     padding: 3rem 1rem 3rem 3rem;
     position: relative;
     display: flex;
@@ -20,7 +20,7 @@
 {
     padding: 1rem;
     height: 100%;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .cardp .card-title

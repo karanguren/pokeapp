@@ -39,7 +39,7 @@ input[type=text] {
 
 .button {
     background-color: #ffffff; 
-    /* border: none; */
+    border: none;
     color: black;
     padding: 10px 15px;
     text-align: center;

@@ -15,38 +15,43 @@ export default function PokeInfo() {
     const getPokemon = async () => {
         const respuesta = await axios.get(url);
         setPokemon(respuesta.data);
-        console.log(respuesta.data);
         return
     };
-
-    console.log(pokemon);
-
 
     useEffect(() => {
         getPokemon();
     }, []);
-
-
 
     const className = pokemon.length !== 0 ? pokemon.types.map(({ type }) => 'type-' + type.name).join(' ') : '';
     const types = pokemon.length !== 0 ? pokemon.types.map(({ type }) => type.name).join(', ') : '';
     const abilities = pokemon.length !== 0 ? pokemon.abilities.map(({ ability }) => {
         return ability.name.replace('-', ' ');
     }).join(', ') : '';
+    const paddedId = pokemon.length !== 0 ? '#' + pokemon.id.toString().padStart(3, '000') : '';
+
+    const base = pokemon.length !== 0 ? pokemon.stats.map(({ base_stat }) => (base_stat.toString())) : ""
 
     const height = pokemon.height * 10; // cm
     const weight = pokemon.weight / 10; // kg
 
+    const labels = [
+        'HP',
+        'Attack',
+        'Defense',
+        'Sp. Atk',
+        'Sp. Def',
+        'Speed',
+    ];
+
     return (
         <>
             <div className="card-container">
-                
                 <div style={{ marginBottom: '20px' }} onClick={() => navigate(-1)}>
-                <h2><FontAwesomeIcon icon={faArrowLeft} /> Back</h2>
-                    </div>
+                    <h5><FontAwesomeIcon icon={faArrowLeft} /> Back</h5>
+                </div>
                 <div className={`cardp ${className}`}>
                     <div className="bg-pokeball"></div>
-                    <span className="pokemon-id">{pokemon.id}</span>
+                    <span className="pokemon-id">{paddedId}</span>
                     <div className="card-title">
                         <h2>
                             {pokemon.name}
@@ -64,7 +69,7 @@ export default function PokeInfo() {
 
                 </div>
             </div>
-            <h1 style={{textAlignLast: 'center'}}>About</h1>
+            <h5 style={{ textAlignLast: 'center', margin: "20px" }}>About</h5>
             <div className="details">
                 <div className="tab tab-about">
                     <table>
@@ -87,11 +92,34 @@ export default function PokeInfo() {
                             <tr>
                                 <td>Abilities</td>
                                 <td>{abilities}</td>
+
                             </tr>
                         </tbody>
+
                     </table>
                 </div>
+            </div>
+            <h5 style={{ textAlignLast: 'center', margin: "20px" }}>Base Stats</h5>
+            <div className="details">
+                <div className="tab tab-about">
+                    <table>
+                        <tbody>
+                            {
+                                labels.map((label, i) => (
+                                    <>
+                                        <tr key={label}>
+                                            <td>{label}</td>
+                                        <div className="progress" style={{ margin: '10px'}}>
+                                            <div className={`progress-bar progress-bar-striped ${className}`} role="progressbar" aria-label="Default striped example" style={{ width: base[i]+'%' }} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">{ base[i]+'%'}</div>
+                                        </div>
+                                        </tr>
+                                    </>
+                                ))
+                            }
+                        </tbody>
 
+                    </table>
+                </div>
             </div>
         </>
     );

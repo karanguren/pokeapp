@@ -1,14 +1,9 @@
 import React from "react";
 import "./Card.css";
 
-import {
-    BrowserRouter as Router,
-    Link,
-    useLocation
-} from "react-router-dom";
+import {Link } from "react-router-dom";
 
 const Card = ({ pokemon, loading, infoPokemon }) => {
-    console.log(pokemon)
 
     return (
         <>
@@ -16,12 +11,14 @@ const Card = ({ pokemon, loading, infoPokemon }) => {
                 loading ? <h1>Loading...</h1> :
                     pokemon.map((item) => {
                         let className = item.types.map(({ type }) => 'type-' + type.name).join(' ')
+                        let paddedId = '#' + item.id.toString().padStart( 3, '000' );
+
                         return (
                             <div className="card-container" key={item.id} >
                                 <div className={`cardp ${className}`}>
 
                                     <div className="bg-pokeball"></div>
-                                    <span className="pokemon-id">{item.id}</span>
+                                    <span className="pokemon-id">{paddedId}</span>
 
                                     <div className="card-title">
                                         <h2>
@@ -34,8 +31,8 @@ const Card = ({ pokemon, loading, infoPokemon }) => {
                                                 ))
                                             }
                                         </div>
-                                        <Link style={{ textDecoration: 'none', color: 'white' }} to={`pokemon/${item.id}`} >
-                                            <h4 onClick={() => infoPokemon(item)}>Details</h4>
+                                        <Link style={{ textDecoration: 'none', color: 'white' }}  to={`pokemon/${item.id}`} >
+                                            <h6 style={{ marginTop: "10%" }} onClick={() => infoPokemon(item)}>Details</h6>
                                         </Link>
                                     </div>
 
