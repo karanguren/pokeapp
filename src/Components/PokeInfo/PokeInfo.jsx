@@ -5,7 +5,6 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./PokeInfo.css";
 
-
 export default function PokeInfo() {
     const { id } = useParams();
     const [url, setUrl] = useState(`https://pokeapi.co/api/v2/pokemon/${id}`)
