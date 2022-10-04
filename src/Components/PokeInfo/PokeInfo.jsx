@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./PokeInfo.css";
 
-import { useParams } from "react-router-dom";
 
 export default function PokeInfo() {
     const { id } = useParams();
     const [url, setUrl] = useState(`https://pokeapi.co/api/v2/pokemon/${id}`)
     const [pokemon, setPokemon] = useState([]);
+    const navigate = useNavigate();
 
     const getPokemon = async () => {
         const respuesta = await axios.get(url);
@@ -23,7 +26,7 @@ export default function PokeInfo() {
         getPokemon();
     }, []);
 
-    
+
 
     const className = pokemon.length !== 0 ? pokemon.types.map(({ type }) => 'type-' + type.name).join(' ') : '';
     const types = pokemon.length !== 0 ? pokemon.types.map(({ type }) => type.name).join(', ') : '';
@@ -37,6 +40,10 @@ export default function PokeInfo() {
     return (
         <>
             <div className="card-container">
+                
+                <div style={{ marginBottom: '20px' }} onClick={() => navigate(-1)}>
+                <h2><FontAwesomeIcon icon={faArrowLeft} /> Back</h2>
+                    </div>
                 <div className={`cardp ${className}`}>
                     <div className="bg-pokeball"></div>
                     <span className="pokemon-id">{pokemon.id}</span>
@@ -57,7 +64,7 @@ export default function PokeInfo() {
 
                 </div>
             </div>
-            <h1>About</h1>
+            <h1 style={{textAlignLast: 'center'}}>About</h1>
             <div className="details">
                 <div className="tab tab-about">
                     <table>
@@ -84,7 +91,7 @@ export default function PokeInfo() {
                         </tbody>
                     </table>
                 </div>
-                
+
             </div>
         </>
     );
